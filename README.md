@@ -9,9 +9,10 @@ A simplified Customer Relationship Management (CRM) system built as part of the 
 - Campaign Management
 - Google Authentication
 - Message Delivery Tracking
+- Asynchronous Message Queue for Campaign Message Processing
 
 ## Tech Stack
-- **Frontend**: React.js
+- **Frontend**: React Typescript
 - **Backend**: Node.js
 - **Database**: MySQL
 - **Authentication**: Google OAuth
@@ -25,6 +26,14 @@ This API allows you to manage customer data with the following endpoints:
   ![image](https://github.com/user-attachments/assets/2d97e076-3816-4f35-bd44-48dd3c0343e9)
 - **PUT** `/api/customers/:id`: Update an existing customer.
 - **DELETE** `/api/customers/:id`: Delete a customer.
+
+## Campaign Message Queue
+The system uses an in-memory message queue to handle campaign message sending efficiently. Messages are queued and processed asynchronously, ensuring that the campaign execution does not block API responses. This enhances scalability and reliability.
+### How it Works
+- When a campaign is initiated, messages are added to an in-memory queue.
+- The queue processes messages one by one, simulating message delivery.
+- Campaign stats are updated dynamically based on successful and failed messages.
+- Once all messages are processed, the campaign is marked as completed.
 
 ## Setup and Installation
 1. Clone the repository
